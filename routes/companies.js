@@ -5,6 +5,8 @@ const db = require("../db");
 
 const ExpressError = require("../expressError");
 
+//hey!!! you're going to have to comeback here and update this.
+
 router.get('/', async (req, res, next) => {
     try {
         const resp = await db.query(`
