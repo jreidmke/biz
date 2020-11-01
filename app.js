@@ -7,8 +7,8 @@ const ExpressError = require("./expressError");
 
 const coRoutes = require('./routes/companies');
 app.use("/companies", coRoutes);
-// const inRoutes = require('./routes/invoices');
-// app.use("/invoices", inRoutes);
+const inRoutes = require('./routes/invoices');
+app.use("/invoices", inRoutes);
 
 /** 404 handler */
 app.use(function (req, res, next) {
