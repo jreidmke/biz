@@ -41,8 +41,19 @@ INSERT INTO invoices (comp_Code, amt, paid, paid_date)
          ('apple', 300, true, '2018-01-01'),
          ('ibm', 400, false, null);
 
+INSERT INTO industries
+  VALUES('acct', 'Accounting'),
+        ('pizza', 'Pizza'),
+        ('comp', 'Computers');
+
+INSERT INTO company_industry
+  VALUES('apple', 'acct'),
+        ('apple', 'pizza'),
+        ('ibm', 'pizza'),
+        ('ibm', 'comp');
 
 \dt
-
 SELECT * FROM companies;
 SELECT * FROM invoices;
+SELECT * FROM industries;
+SELECT * FROM company_industry;
