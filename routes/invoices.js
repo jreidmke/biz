@@ -13,7 +13,14 @@ const db = require("../db");
 
 //POST /invoices takes in {comp_code, amt} and RETURNS {invoice: {id, comp_code, amt, paid, add_date, paid_date}}
 
-//PUT /invoices/id updates by id. Takes in {amt}, RETURNS {invoice: {id, comp_code, amt, paid, add_date, paid_date}}
+//PUT /invoices/id updates by id. Takes in {amt, paid(bool)}, RETURNS {invoice: {id, comp_code, amt, paid, add_date, paid_date}}
+//Allow payment of invoices.
+//if paying unpaid invoice:
+    //set paid_date to today
+//if un-paying:
+    //set paid_date to null
+//if no change:
+    //keep current paid date
 
 //DELETE /invoices/id RETURNS {status: "deleted"}
 

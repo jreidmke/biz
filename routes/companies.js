@@ -6,7 +6,9 @@ const db = require("../db");
 const ExpressError = require("../expressError");
 
 //hey!!! you're going to have to comeback here and update this.
+//so well need to add TWO JOINS.
 
+//we'll need to return an INVOICES ARRAY and a INDUSTRY ARRAY
 router.get('/', async (req, res, next) => {
     try {
         const resp = await db.query(`
@@ -35,6 +37,7 @@ router.get('/:code', async(req, res, next) => {
     }
 })
 
+//come back to change this route and add sluggify library.
 router.post('/', async(req, res, next) => {
     try {
         const { code, name, description } = req.body;
