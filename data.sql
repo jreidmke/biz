@@ -53,6 +53,7 @@ INSERT INTO company_industry
         ('ibm', 'comp');
 
 \dt
+
 SELECT * FROM companies;
 SELECT * FROM invoices;
 SELECT * FROM industries;
