@@ -16,7 +16,6 @@ beforeEach(async() => {
 
 afterEach(async() => {
     await db.query(`DELETE FROM companies`);
-    await db.query(`DELETE FROM invoices`);
 })
 
 afterAll(async() => {

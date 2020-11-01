@@ -3,7 +3,6 @@ const express = require("express");
 const router = express.Router();
 const ExpressError = require('../expressError');
 const db = require("../db");
-const slugify = require("slugify");
 
 //alright, let's check those routes
 
@@ -62,8 +61,45 @@ router.post('/', async(req, res, next) => {
 //if no change:
     //keep current paid date
 
-//DELETE /invoices/id RETURNS {status: "deleted"}
+router.put("/:id", async(req,res,next) => {
+    try {
+        const { amt, paid } = req.body;
+        const isPaid = (await db.query(
+            `SELECT paid FROM invoices WHERE id=$1`, [req.params.id]
+        )).rows[0]['paid'];
+        // let resp;
+        if(!isPaid && paid) {
+            resp = await db.query(
+                `UPDATE invoices
+                SET amt=$1, paid=$2 WHERE id=$3 RETURNING *`, [amt, paid, req.params.id]
+            );
+        } else if(isPaid && !paid) {
+            resp = await db.query(
+                `UPDATE invoices
+                SET amt=$1, paid=$2 WHERE id=$3 RETURNING *`, [amt, paid, req.params.id]
+            );
+        } else {
+            resp = await db.query(
+                `UPDATE invoices
+                SET amt=$1, paid=$2 WHERE id=$3 RETURNING *`, [amt, paid, req.params.id]
+            );
+        }
+        return res.json({invoice: resp.rows[0]});
+    } catch (error) {
+        return next(error);
+    }
+})
 
-//LOOKS LIKE YOU"LL NEED TO CHANGE GET/companies UGH
+// DELETE /invoices/id RETURNS {status: "deleted"}
+
+router.delete('/:id', async(req, res, next) => {
+    try {
+        await db.query(`DELETE FROM invoices WHERE id=$1`, [req.params.id]);
+        return res.status(202).json({status: "deleted"});
+    } catch (error) {
+        return next(error);
+    }
+})
+
 
 module.exports = router;

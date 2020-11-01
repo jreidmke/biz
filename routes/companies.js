@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
-
 const db = require("../db");
-
+const slugify = require("slugify");
 const ExpressError = require("../expressError");
 
 //hey!!! you're going to have to comeback here and update this.
